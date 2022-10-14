@@ -20,7 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const store = getFirestore(app);
 
-export { store };
+export { app, store };
 // For reference: This is how you add
 // try {
 //   const docRef = await addDoc(collection(store, "user"), {
