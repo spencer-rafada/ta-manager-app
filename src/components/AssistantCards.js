@@ -6,8 +6,9 @@ function AssistantCards({ tadata }) {
       {tadata.map((info, index) => {
         return (
           <div key={index}>
-            <p>{info.first}</p>
-            <p>{info.last}</p>
+            <p>
+              {info.first} {info.last}
+            </p>
             <p>{info.i_number}</p>
             <ul>
               {info.section.map((section, index) => {

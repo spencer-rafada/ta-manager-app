@@ -1,5 +1,5 @@
 import React from "react";
-import AddTA from "../components/forms/AddTA.js";
+import AddTA from "../components/forms/AddTA/AddTA.js";
 import SearchTA from "../components/forms/SearchTA.js";
 // import ViewTA from "../components/ViewTA.js";
 

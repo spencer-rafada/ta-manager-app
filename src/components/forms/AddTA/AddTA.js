@@ -1,6 +1,7 @@
 import { React, useState } from "react";
-import { store } from "../../firebase.js";
+import { store } from "../../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
+import "./AddTA.style.css";
 
 export default function AddTA() {
   const [f_name, setFName] = useState("");
@@ -16,7 +17,7 @@ export default function AddTA() {
   // handle additional sections
   const handleFormChange = (index, event) => {
     let data = [...section];
-    data[index][event.target.name] = event.target.value;
+    data[index] = event.target.value;
     setSection(data);
   };
 
@@ -57,7 +58,10 @@ export default function AddTA() {
   };
 
   return (
-    <div className="form">
+    <div className="add-form">
+      <div className="add-form-title">
+        <h1>Add a TA</h1>
+      </div>
       <form onSubmit={handleSubmit}>
         <label>
           First Name
@@ -112,6 +116,7 @@ export default function AddTA() {
           />
         </label>
         <div className="section">
+          <p>Sections</p>
           {section.map((input, index) => {
             return (
               <div key={index}>
