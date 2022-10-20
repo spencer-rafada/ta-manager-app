@@ -1,6 +1,6 @@
 import React from "react";
-import AddTA from "../components/forms/AddTA/AddTA.js";
-import SearchTA from "../components/forms/SearchTA.js";
+import AddTA from "../components/AddTA/AddTA.js";
+import SearchTA from "../components/SearchTA/SearchTA.js";
 // import ViewTA from "../components/ViewTA.js";
 
 export default function Admin() {

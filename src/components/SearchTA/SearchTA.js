@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { store } from "../../firebase.js";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import AssistantCards from "../AssistantCards.js";
+import "./SearchTA.style.css";
 
 function SearchTA() {
   const [searchText, setSearchText] = useState("");
@@ -35,17 +36,19 @@ function SearchTA() {
 
   return (
     <div>
-      <div>SearchTA</div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search TA name..."
-          required
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="search_container">
+        <p className="search_title">Search TA</p>
+        <form onSubmit={handleSubmit}>
+          <input
+            className="search_input"
+            type="text"
+            placeholder="SEARCH..."
+            required
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </form>
+      </div>
       <AssistantCards tadata={results} />
     </div>
   );
