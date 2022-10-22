@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { store } from "../../firebase.js";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import AssistantCards from "../AssistantCards.js";
+import AssistantCards from "../AssistantCards/AssistantCards.js";
 import "./SearchTA.style.css";
 
 function SearchTA() {

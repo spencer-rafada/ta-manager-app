@@ -2,6 +2,8 @@ import { React, useState } from "react";
 import { store } from "../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
 import "./AddTA.style.css";
+import Input from "../Input.js";
+import InputCheckbox from "../InputCheckbox.js";
 
 export default function AddTA() {
   const [f_name, setFName] = useState("");
@@ -13,6 +15,35 @@ export default function AddTA() {
   const [enrolled, setEnrolled] = useState(false);
   const [trained, setTrained] = useState(false);
   const [certificate, setCertificate] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const handleFNameChange = (e) => {
+    setFName(e.target.value);
+  };
+
+  const handleLNameChange = (e) => {
+    setLName(e.target.value);
+  };
+
+  const handleINumberChange = (e) => {
+    setNumber(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleEnrolledChange = (e) => {
+    setEnrolled(!enrolled);
+  };
+
+  const handleTrainingChange = (e) => {
+    setTrained(!trained);
+  };
+
+  const handleCertificateChange = (e) => {
+    setCertificate(!certificate);
+  };
 
   const handleTypeChange = (e) => {
     setType(e.target.value);
@@ -58,7 +89,7 @@ export default function AddTA() {
       i_number: number,
       courses: section,
       email: email,
-      enrollment: enrolled,
+      enrolled: enrolled,
       trained: trained,
       certificate: certificate,
     };
@@ -71,28 +102,26 @@ export default function AddTA() {
         <h1>Add a TA</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <label>
-          First Name
-          <input
-            type="text"
-            value={f_name}
-            placeholder="Your First Name..."
-            required
-            onChange={(e) => setFName(e.target.value)}
-          />
-        </label>
-        <br></br>
-        <label>
-          Last Name
-          <input
-            type="text"
-            value={l_name}
-            placeholder="Your Last Name..."
-            required
-            onChange={(e) => setLName(e.target.value)}
-          />
-        </label>
-        <br></br>
+        <Input
+          label={"First Name"}
+          type={"text"}
+          value={f_name}
+          onChange={handleFNameChange}
+        />
+        <Input
+          label={"Last Name"}
+          type={"text"}
+          value={l_name}
+          onChange={handleLNameChange}
+        />
+        <div>
+          <label>Status:</label>
+          <select>
+            <option value="returning">Returning</option>
+            <option value="new">New TA</option>
+            <option value="quit">Quit</option>
+          </select>
+        </div>
         <div className="radio">
           <label>
             <input
@@ -113,61 +142,36 @@ export default function AddTA() {
             CM-TA
           </label>
         </div>
-        <label>
-          I-Number
-          <input
-            type="text"
-            value={number}
-            placeholder="Your I-Number..."
-            required
-            onChange={(e) => setNumber(e.target.value)}
-          />
-        </label>
-        <br></br>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            placeholder="Your Email..."
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <br></br>
-        <label>
-          Enrolled in Training Course
-          <input
-            type="checkbox"
-            checked={enrolled}
-            onChange={() => {
-              setEnrolled(!enrolled);
-            }}
-          />
-        </label>
-        <br></br>
-        <label>
-          Completed Training
-          <input
-            type="checkbox"
-            checked={trained}
-            onChange={() => {
-              setTrained(!trained);
-            }}
-          />
-        </label>
-        <br></br>
-        <label>
-          Received Certificate
-          <input
-            type="checkbox"
-            checked={certificate}
-            onChange={() => {
-              setCertificate(!certificate);
-            }}
-          />
-        </label>
-        <br></br>
+        <Input
+          label={"I-Number"}
+          type={"text"}
+          value={number}
+          onChange={handleINumberChange}
+        />
+        <Input
+          label={"Email"}
+          type={"email"}
+          value={email}
+          onChange={handleEmailChange}
+        />
+        <InputCheckbox
+          label={"Enrolled in Training Course"}
+          type={"checkbox"}
+          value={enrolled}
+          onChange={handleEnrolledChange}
+        />
+        <InputCheckbox
+          label={"Completed Training"}
+          type={"checkbox"}
+          value={trained}
+          onChange={handleTrainingChange}
+        />
+        <InputCheckbox
+          label={"Received Certificate"}
+          type={"checkbox"}
+          value={certificate}
+          onChange={handleCertificateChange}
+        />
         <div className="section">
           <p>Courses</p>
           {section.map((input, index) => {

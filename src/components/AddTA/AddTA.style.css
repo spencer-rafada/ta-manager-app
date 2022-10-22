@@ -14,7 +14,7 @@
     margin: 0 auto;
 }
 
-.add-form input[type=text] {
+.add-form input[type=text], .add-form input[type=email] {
     border-radius: 5px;
     width: 70%;
     height: 20px;
