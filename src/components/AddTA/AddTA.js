@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { store } from "../../firebase.js";
+import { store, storage } from "../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
 import "./AddTA.style.css";
 import Input from "../Input.js";
