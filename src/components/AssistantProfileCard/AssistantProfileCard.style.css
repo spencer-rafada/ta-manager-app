@@ -1,0 +1,28 @@
+.profile-card-container {
+    background-color: orange;
+    width: 40%;
+    text-align: center;
+    margin: 20px;
+}
+
+.profile-card-info {
+    text-align: center;
+}
+
+.profile-card-info p {
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.profile-card-certificates {
+    background-color: white;
+}
+
+.profile-card-courses p {
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.profile-card-courses ul {
+    margin: 0 auto;
+}

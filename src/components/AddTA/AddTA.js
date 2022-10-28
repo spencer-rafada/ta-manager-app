@@ -15,7 +15,6 @@ export default function AddTA() {
   const [enrolled, setEnrolled] = useState(false);
   const [trained, setTrained] = useState(false);
   const [certificate, setCertificate] = useState(false);
-  const [status, setStatus] = useState("");
 
   const handleFNameChange = (e) => {
     setFName(e.target.value);
@@ -114,14 +113,6 @@ export default function AddTA() {
           value={l_name}
           onChange={handleLNameChange}
         />
-        <div>
-          <label>Status:</label>
-          <select>
-            <option value="returning">Returning</option>
-            <option value="new">New TA</option>
-            <option value="quit">Quit</option>
-          </select>
-        </div>
         <div className="radio">
           <label>
             <input
