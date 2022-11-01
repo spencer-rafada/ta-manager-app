@@ -1,29 +1,26 @@
-import React from "react";
-import "./AssistantProfileCard.style.css";
+import { React, useState } from "react";
+import ViewProfileCard from "./ViewProfileCard/ViewProfileCard.js";
+import EditProfileCard from "./EditProfileCard/EditProfileCard.js";
 
 export default function AssistantProfileCard({ data }) {
+  const [state, setState] = useState("view");
+
+  const handleToggle = () => {
+    if (state === "view") {
+      setState("edit");
+    } else {
+      setState("view");
+    }
+  };
+
   return (
-    <div className="profile-card-container">
-      <div className="profile-card-info">
-        <p>
-          {data.first} {data.last}
-        </p>
-        <p>I-Number: {data.i_number}</p>
-        <p>Type: {data.type}-TA</p>
-      </div>
-      <div className="profile-card-certificates">
-        {data.enrolled && <p>Enrolled in Training</p>}
-        {data.trained && <p>Finished Training </p>}
-        {data.certificate && <p>Received Certificate </p>}
-      </div>
-      <div className="profile-card-courses">
-        <p>Courses</p>
-        <ul>
-          {data.courses.map((course, index) => {
-            return <li key={index}>{course}</li>;
-          })}
-        </ul>
-      </div>
+    <div>
+      {state === "view" && (
+        <ViewProfileCard data={data} setState={handleToggle} />
+      )}
+      {state === "edit" && (
+        <EditProfileCard data={data} setState={handleToggle} />
+      )}
     </div>
   );
 }

@@ -20,15 +20,24 @@ function SearchTA() {
 
     var querySnapshot = await getDocs(firstQuery);
     querySnapshot.forEach((doc) => {
-      searchResult.push(doc.data());
+      const id = {};
+      id["id"] = doc.id;
+      const data = { ...id, ...doc.data() };
+      searchResult.push(data);
     });
     querySnapshot = await getDocs(lastQuery);
     querySnapshot.forEach((doc) => {
-      searchResult.push(doc.data());
+      const id = {};
+      id["id"] = doc.id;
+      const data = { ...id, ...doc.data() };
+      searchResult.push(data);
     });
     querySnapshot = await getDocs(inumberQuery);
     querySnapshot.forEach((doc) => {
-      searchResult.push(doc.data());
+      const id = {};
+      id["id"] = doc.id;
+      const data = { ...id, ...doc.data() };
+      searchResult.push(data);
     });
     setResults(searchResult);
     console.log(searchResult);
@@ -49,6 +58,7 @@ function SearchTA() {
           />
         </form>
       </div>
+
       <AssistantCards tadata={results} />
     </div>
   );
