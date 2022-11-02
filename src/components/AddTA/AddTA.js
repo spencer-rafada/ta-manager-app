@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { store, storage } from "../../firebase.js";
+import { store } from "../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
 import "./AddTA.style.css";
 import Input from "../Input.js";
@@ -32,15 +32,15 @@ export default function AddTA() {
     setEmail(e.target.value);
   };
 
-  const handleEnrolledChange = (e) => {
+  const handleEnrolledChange = () => {
     setEnrolled(!enrolled);
   };
 
-  const handleTrainingChange = (e) => {
+  const handleTrainingChange = () => {
     setTrained(!trained);
   };
 
-  const handleCertificateChange = (e) => {
+  const handleCertificateChange = () => {
     setCertificate(!certificate);
   };
 
