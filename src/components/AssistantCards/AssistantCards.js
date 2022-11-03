@@ -3,10 +3,10 @@ import AssistantProfileCard from "../AssistantProfileCard/AssistantProfileCard.j
 
 function AssistantCards({ tadata }) {
   return (
-    <div>
+    <div className="cardlist">
       {tadata.map((info, index) => {
         return (
-          <div key={index}>
+          <div className="cardlist__cards" key={index}>
             <AssistantProfileCard data={info} />;
           </div>
         );
