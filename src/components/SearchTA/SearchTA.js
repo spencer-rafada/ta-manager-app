@@ -43,6 +43,20 @@ function SearchTA() {
     console.log(searchResult);
   };
 
+  const handleViewAll = async () => {
+    const searchResult = [];
+    setResults([]);
+    const taRef = collection(store, "ta");
+    const snapshot = await getDocs(taRef);
+    snapshot.forEach((doc) => {
+      const id = {};
+      id["id"] = doc.id;
+      const data = { ...id, ...doc.data() };
+      searchResult.push(data);
+    });
+    setResults(searchResult);
+  };
+
   return (
     <div>
       <div className="search_container">
@@ -57,6 +71,11 @@ function SearchTA() {
             onChange={(e) => setSearchText(e.target.value)}
           />
         </form>
+        <div>
+          <button type="button" onClick={handleViewAll}>
+            View All
+          </button>
+        </div>
       </div>
 
       <AssistantCards tadata={results} />
