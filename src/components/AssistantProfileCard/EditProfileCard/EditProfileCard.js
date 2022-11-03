@@ -82,9 +82,10 @@ export default function EditProfileCard({ data, setState }) {
         <h1>EditProfileCard</h1>
       </div>
       <button
-        className="form-edit__input form-edit__button"
+        className="form-edit__button form-edit__button-edit"
         type="button"
-        onClick={setState}>
+        onClick={setState}
+      >
         Return
       </button>
       <form onSubmit={handleSubmit}>
@@ -156,7 +157,8 @@ export default function EditProfileCard({ data, setState }) {
                 <button
                   className="form-edit__button form-edit__button-remove"
                   type="button"
-                  onClick={() => removeSection(index)}>
+                  onClick={() => removeSection(index)}
+                >
                   Remove
                 </button>
               </div>
@@ -166,12 +168,14 @@ export default function EditProfileCard({ data, setState }) {
         <button
           className="form-edit__button form-edit__button-add"
           type="button"
-          onClick={addSection}>
+          onClick={addSection}
+        >
           Add more section...
         </button>
         <button
           className="form-edit__button form-edit__button-submit"
-          type="submit">
+          type="submit"
+        >
           Submit
         </button>
       </form>

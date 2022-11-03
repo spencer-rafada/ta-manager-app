@@ -1,19 +1,19 @@
-.navbar-container {
+.nav {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     background-color: orange;
 }
 
-.navbar-container div {
+.nav div {
     color: white;
     padding: 20px;
 }
 
-.navbar-container div:hover{
+.nav div:hover{
     background-color: gray;
 }
 
-.navbar-container Link:visited{
+.nav Link:visited{
     color: white;
 }
