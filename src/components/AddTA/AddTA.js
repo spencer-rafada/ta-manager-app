@@ -96,8 +96,8 @@ export default function AddTA() {
   };
 
   return (
-    <div className="add-form">
-      <div className="add-form-title">
+    <div className="form">
+      <div className="form form__title">
         <h1>Add a TA</h1>
       </div>
       <form onSubmit={handleSubmit}>
@@ -113,7 +113,7 @@ export default function AddTA() {
           value={l_name}
           onChange={handleLNameChange}
         />
-        <div className="radio">
+        <div className="form__input form__input-radio">
           <label>
             <input
               type="radio"
@@ -163,7 +163,7 @@ export default function AddTA() {
           value={certificate}
           onChange={handleCertificateChange}
         />
-        <div className="section">
+        <div className="form__input form__input-courses">
           <p>Courses</p>
           {section.map((input, index) => {
             return (
@@ -175,7 +175,10 @@ export default function AddTA() {
                   value={section.section}
                   onChange={(event) => handleFormChange(index, event)}
                 />
-                <button type="button" onClick={() => removeSection(index)}>
+                <button
+                  className="form__button form__button-remove"
+                  type="button"
+                  onClick={() => removeSection(index)}>
                   Remove
                 </button>
               </div>
@@ -183,10 +186,16 @@ export default function AddTA() {
           })}
         </div>
 
-        <button type="button" onClick={addSection}>
+        <button
+          className="form__button form__button-add"
+          type="button"
+          onClick={addSection}>
           Add more section...
         </button>
-        <button type="submit" onClick={handleSubmit}>
+        <button
+          className="form__button form__button-submit"
+          type="submit"
+          onClick={handleSubmit}>
           Submit
         </button>
       </form>

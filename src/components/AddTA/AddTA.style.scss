@@ -1,0 +1,13 @@
+$main-color: hsl(25, 80%, 46%);
+$font-color: hsl(30, 4%, 11%);
+
+.form {
+    display: block;
+    width: 750px;
+    background-color: $main-color;
+    color: $font-color;
+    .form__title {
+        color: $font-color;
+    }
+}
+
