@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import { store } from "../../../firebase.js";
 import { doc, updateDoc } from "firebase/firestore";
+import Input from "../../form/Input/Input.js";
+import InputCheckbox from "../../form/InputCheckbox.js";
 
 export default function EditProfileCard({ data, setState }) {
   const [first, setFirst] = useState(data.first);
@@ -78,25 +80,27 @@ export default function EditProfileCard({ data, setState }) {
 
   return (
     <div className="form-edit">
-      <div className="form-edit__title">
-        <h1>EditProfileCard</h1>
-      </div>
       <button
         className="form-edit__button form-edit__button-edit"
         type="button"
-        onClick={setState}
-      >
+        onClick={setState}>
         Return
       </button>
       <form onSubmit={handleSubmit}>
-        <div className="form-edit__input form-edit__input-text">
-          <label>First Name</label>
-          <input value={first} type={"text"} onChange={handleFirstChange} />
-        </div>
-        <div className="form-edit__input form-edit__input-text">
-          <label>Last Name</label>
-          <input value={last} type={"text"} onChange={handleLastChange} />
-        </div>
+        <Input
+          label={"First Name"}
+          value={first}
+          type={"text"}
+          placeholder={""}
+          onChange={handleFirstChange}
+        />
+        <Input
+          label={"Last Name"}
+          value={last}
+          type={"text"}
+          placeholder={""}
+          onChange={handleLastChange}
+        />
         <div className="form-edit__input form-edit__input-radio">
           <label>
             <input
@@ -117,34 +121,31 @@ export default function EditProfileCard({ data, setState }) {
             CM-TA
           </label>
         </div>
-        <div className="form-edit__input form-edit__input-text">
-          <label>I-Number</label>
-          <input value={number} type={"text"} onChange={handleNumberChange} />
-        </div>
-        <div className="form-edit__input form-edit__input-checkbox">
-          <label>Enrolled in Training Course</label>
-          <input
-            type="checkbox"
-            checked={enrolled}
-            onChange={handleEnrolledChange}
-          />
-        </div>
-        <div className="form-edit__input form-edit__input-checkbox">
-          <label>Completed Training</label>
-          <input
-            type="checkbox"
-            checked={trained}
-            onChange={handleTrainingChange}
-          />
-        </div>
-        <div className="form-edit__input form-edit__input-checkbox">
-          <label>Received Certificate</label>
-          <input
-            type="checkbox"
-            checked={certificate}
-            onChange={handleCertificateChange}
-          />
-        </div>
+        <Input
+          label={"I-Number"}
+          value={number}
+          type={"text"}
+          placeholder={""}
+          onChange={handleNumberChange}
+        />
+        <InputCheckbox
+          label={"Enrolled in Training Course"}
+          type={"checkbox"}
+          checked={enrolled}
+          onChange={handleEnrolledChange}
+        />
+        <InputCheckbox
+          label={"Completed Training"}
+          type={"checkbox"}
+          checked={trained}
+          onChange={handleTrainingChange}
+        />
+        <InputCheckbox
+          label={"Received Certificate"}
+          type={"checkbox"}
+          checked={certificate}
+          onChange={handleCertificateChange}
+        />
         <div className="form-edit__input form-edit__input-courses">
           {courses.map((input, index) => {
             return (
@@ -157,8 +158,7 @@ export default function EditProfileCard({ data, setState }) {
                 <button
                   className="form-edit__button form-edit__button-remove"
                   type="button"
-                  onClick={() => removeSection(index)}
-                >
+                  onClick={() => removeSection(index)}>
                   Remove
                 </button>
               </div>
@@ -168,14 +168,12 @@ export default function EditProfileCard({ data, setState }) {
         <button
           className="form-edit__button form-edit__button-add"
           type="button"
-          onClick={addSection}
-        >
+          onClick={addSection}>
           Add more section...
         </button>
         <button
           className="form-edit__button form-edit__button-submit"
-          type="submit"
-        >
+          type="submit">
           Submit
         </button>
       </form>

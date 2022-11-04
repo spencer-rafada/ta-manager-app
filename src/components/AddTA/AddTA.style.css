@@ -1,9 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@500;700&display=swap");
 .form {
   display: block;
-  width: 750px;
-  background-color: hsl(25deg, 80%, 46%);
-  color: hsl(30deg, 4%, 11%);
+  width: 500px;
+  background: linear-gradient(180deg, hsl(213deg, 19%, 18%), hsl(216deg, 12%, 8%));
+  color: hsl(0deg, 0%, 100%);
+  font-size: 14px;
+  font-family: "Overpass", sans-serif;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 20px;
 }
 .form .form__title {
-  color: hsl(30deg, 4%, 11%);
+  color: hsl(140deg, 88%, 16%);
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
+.form .form__title h1 {
+  display: inline;
+  margin: 0 auto;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 24px;
+}
+.form .form__title .form__input-radio {
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }/*# sourceMappingURL=AddTA.style.css.map */

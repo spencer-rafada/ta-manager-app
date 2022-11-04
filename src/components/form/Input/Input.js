@@ -1,8 +1,9 @@
 import React from "react";
+import "./Input.style.css";
 
 export default function Input({ label, type, value, onChange }) {
   return (
-    <div>
+    <div className="input">
       <label>{label}</label>
       <input
         type={type}

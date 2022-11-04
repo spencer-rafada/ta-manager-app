@@ -1,6 +1,12 @@
-import React from "react";
+import { React, useState } from "react";
 
 export default function ViewProfileCard({ data, setState }) {
+  const [status, setStatus] = useState(false);
+
+  const handleStatusChange = () => {
+    setStatus(!status);
+  };
+
   return (
     <div className="card">
       <button
@@ -21,11 +27,6 @@ export default function ViewProfileCard({ data, setState }) {
         <div className="card__info card__info-type">
           <p>Type: {data.type}-TA</p>
         </div>
-        <div className="card__info card__info-status">
-          {data.enrolled && <p>Enrolled in Training</p>}
-          {data.trained && <p>Finished Training </p>}
-          {data.certificate && <p>Received Certificate </p>}
-        </div>
         <div className="card__info card__info-courses">
           <p>Courses</p>
           <ul>
@@ -34,6 +35,16 @@ export default function ViewProfileCard({ data, setState }) {
             })}
           </ul>
         </div>
+        <button type="button" onClick={handleStatusChange}>
+          Check Status
+        </button>
+        {status && (
+          <div className="card__info card__info-status">
+            <p>Enrolled in Training: {data.enrolled ? "Yes" : "No"}</p>
+            <p>Finished Training: {data.trained ? "Yes" : "No"}</p>
+            <p>Received Certificate: {data.certificate ? "Yes" : "No"}</p>
+          </div>
+        )}
       </div>
     </div>
   );

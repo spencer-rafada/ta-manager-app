@@ -2,8 +2,8 @@ import { React, useState } from "react";
 import { store } from "../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
 import "./AddTA.style.css";
-import Input from "../Input.js";
-import InputCheckbox from "../InputCheckbox.js";
+import Input from "../form/Input/Input.js";
+import InputCheckbox from "../form/InputCheckbox.js";
 
 export default function AddTA() {
   const [f_name, setFName] = useState("");
@@ -97,17 +97,19 @@ export default function AddTA() {
 
   return (
     <div className="form">
-      <div className="form form__title">
-        <h1>Add a TA</h1>
+      <div className="form__title">
+        <h1>Add</h1>
       </div>
       <form onSubmit={handleSubmit}>
         <Input
+          className="form__input"
           label={"First Name"}
           type={"text"}
           value={f_name}
           onChange={handleFNameChange}
         />
         <Input
+          className="form__input"
           label={"Last Name"}
           type={"text"}
           value={l_name}
@@ -134,12 +136,14 @@ export default function AddTA() {
           </label>
         </div>
         <Input
+          className="form__input"
           label={"I-Number"}
           type={"text"}
           value={number}
           onChange={handleINumberChange}
         />
         <Input
+          className="form__input"
           label={"Email"}
           type={"email"}
           value={email}
