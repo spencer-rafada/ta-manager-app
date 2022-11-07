@@ -15,7 +15,7 @@ function SearchTA() {
     e.preventDefault();
     const searchResult = [];
     setResults([]);
-    const taRef = collection(store, "ta");
+    const taRef = collection(store, semester);
 
     const firstQuery = query(taRef, where("first", "==", searchText));
     const lastQuery = query(taRef, where("last", "==", searchText));
