@@ -1,6 +1,7 @@
 import React from "react";
 import AddTA from "../components/AddTA/AddTA.js";
 import SearchTA from "../components/SearchTA/SearchTA.js";
+import MoveCollection from "../components/MoveCollection/MoveCollection.js";
 // import ViewTA from "../components/ViewTA.js";
 
 export default function Admin() {
@@ -12,6 +13,8 @@ export default function Admin() {
       <h2>This is to Search TA</h2>
       <SearchTA />
       {/* <ViewTA /> */}
+      <h2>Move collection</h2>
+      <MoveCollection />
     </div>
   );
 }

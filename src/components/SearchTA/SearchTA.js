@@ -3,10 +3,13 @@ import { store } from "../../firebase.js";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import AssistantCards from "../AssistantCards/AssistantCards.js";
 import "./SearchTA.style.css";
+import Select from "../form/Select/Select.js";
+import { Semester } from "../../data/SemesterSelection.js";
 
 function SearchTA() {
   const [searchText, setSearchText] = useState("");
   const [results, setResults] = useState([]);
+  const [semester, setSemester] = useState(Semester[0].value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,10 +46,14 @@ function SearchTA() {
     console.log(searchResult);
   };
 
+  const handleSemesterChange = (e) => {
+    setSemester(e.target.value);
+  };
+
   const handleViewAll = async () => {
     const searchResult = [];
     setResults([]);
-    const taRef = collection(store, "ta");
+    const taRef = collection(store, semester);
     const snapshot = await getDocs(taRef);
     snapshot.forEach((doc) => {
       const id = {};
@@ -71,6 +78,11 @@ function SearchTA() {
             onChange={(e) => setSearchText(e.target.value)}
           />
         </form>
+        <Select
+          semester={semester}
+          onChange={handleSemesterChange}
+          options={Semester}
+        />
         <div>
           <button type="button" onClick={handleViewAll}>
             View All

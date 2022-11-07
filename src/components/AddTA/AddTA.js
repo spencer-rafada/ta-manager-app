@@ -4,6 +4,8 @@ import { collection, addDoc } from "firebase/firestore";
 import "./AddTA.style.css";
 import Input from "../form/Input/Input.js";
 import InputCheckbox from "../form/InputCheckbox.js";
+import Select from "../form/Select/Select.js";
+import { Semester } from "../../data/SemesterSelection.js";
 
 export default function AddTA() {
   const [f_name, setFName] = useState("");
@@ -15,6 +17,7 @@ export default function AddTA() {
   const [enrolled, setEnrolled] = useState(false);
   const [trained, setTrained] = useState(false);
   const [certificate, setCertificate] = useState(false);
+  const [semester, setSemester] = useState(Semester[0].value);
 
   const handleFNameChange = (e) => {
     setFName(e.target.value);
@@ -68,9 +71,13 @@ export default function AddTA() {
     setSection(data);
   };
 
+  const handleSemesterChange = (e) => {
+    setSemester(e.target.value);
+  };
+
   const addData = async (data) => {
     try {
-      const docRef = await addDoc(collection(store, "ta"), data);
+      const docRef = await addDoc(collection(store, semester), data);
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.log("Error adding document: ", e);
@@ -100,6 +107,11 @@ export default function AddTA() {
       <div className="form__title">
         <h1>Add</h1>
       </div>
+      <Select
+        semester={semester}
+        onChange={handleSemesterChange}
+        options={Semester}
+      />
       <form onSubmit={handleSubmit}>
         <Input
           className="form__input"
