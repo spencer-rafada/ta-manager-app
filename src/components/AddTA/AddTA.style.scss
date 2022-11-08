@@ -1,39 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@500;700&display=swap');
 $green: hsl(140, 88%, 16%);
-$white: hsl(0, 0%, 100%);
-$light-grey: hsl(217, 12%, 63%);
-$medium-grey: hsl(216, 12%, 54%);
-$dark-blue: hsl(213, 19%, 18%);
-$very-dark-blue: hsl(216, 12%, 8%);
+$dark-green: hsl(140, 92%, 9%);
+$black: hsl(0, 0%, 0%);
 
 .form {
-    display: block;
-    width: 500px;
-    background: linear-gradient(180deg, $dark-blue, $very-dark-blue);
-    color: $white;
-    font-size: 14px;
-    font-family: 'Overpass', sans-serif;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    width: 450px;
+    border: 10px solid $green;
+    border-radius: 30px;
     padding: 20px;
+    font-size: 20px;
+    color: $dark-green;
+    margin: 10px;
     .form__title {
+        font-size: 30px;
         color: $green;
-        font-weight: 700;
+        text-transform: uppercase;
         text-align: center;
-        margin: 0;
+        letter-spacing: 20px;
         h1 {
-            display: inline;
-            margin: 0 auto;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 24px;
+            margin: 0;
         }
-        .form__input-radio {
-            // do this
+    }
+    .form__input-radio {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 20px;
+        label {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        input {
+            width: 15px;
+            height: 15px;
+        }
+    }
+    .form__section-courses {
+        h2 {
+            margin: 10px;
+        }
+
+        .form__section-add {
             display: flex;
-            text-align: center;
+            align-items: center;
             justify-content: center;
+            button {
+                height: 30px;
+                width: 30px;
+                border: none;
+                img {
+                    height: 25px;
+                    width: 25px;
+                }
+            }
+            
+            button:hover {
+                cursor: pointer;
+                img {
+                    background-color: $green;
+                    border-radius: 5px;;
+                }
+            }
+        }
+
+        .form__input-courses {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            input {
+                font-size: 20px;
+                width: 70%;
+                height: 20px;
+                border-radius: 8px;
+                border: 1px solid $green;
+            }
+            button {
+                border: none;
+                img {
+                    height: 40px;
+                    width: 35px;
+                }
+            }
+            button:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .form__button-submit {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        button {
+            font-size: 18px;
+            background-color: $green;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        button:hover {
+            cursor: pointer;
+            color: white;
+            background-color: $dark-green;
         }
     }
 }
-

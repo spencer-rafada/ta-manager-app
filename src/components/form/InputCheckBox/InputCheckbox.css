@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@500;700&display=swap");
+.input__checkbox {
+  display: flex;
+  color: hsl(140deg, 92%, 9%);
+  font-size: 20px;
+  margin-left: 15%;
+}
+.input__checkbox input {
+  height: 25px;
+  width: 25px;
+}
+.input__checkbox label {
+  text-transform: uppercase;
+  margin-left: 10px;
+  font-weight: bold;
+}
+.input__checkbox label:checked:after {
+  background-color: hsl(140deg, 88%, 16%);
+}/*# sourceMappingURL=InputCheckbox.css.map */

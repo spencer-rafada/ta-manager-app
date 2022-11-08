@@ -3,9 +3,11 @@ import { store } from "../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
 import "./AddTA.style.css";
 import Input from "../form/Input/Input.js";
-import InputCheckbox from "../form/InputCheckbox.js";
+import InputCheckbox from "../form/InputCheckBox/InputCheckbox.js";
 import Select from "../form/Select/Select.js";
 import { Semester } from "../../data/SemesterSelection.js";
+import Trash from "../../img/red-trash.svg";
+import Add from "../../img/add-new.png";
 
 export default function AddTA() {
   const [f_name, setFName] = useState("");
@@ -114,14 +116,12 @@ export default function AddTA() {
       />
       <form onSubmit={handleSubmit}>
         <Input
-          className="form__input"
           label={"First Name"}
           type={"text"}
           value={f_name}
           onChange={handleFNameChange}
         />
         <Input
-          className="form__input"
           label={"Last Name"}
           type={"text"}
           value={l_name}
@@ -148,14 +148,12 @@ export default function AddTA() {
           </label>
         </div>
         <Input
-          className="form__input"
           label={"I-Number"}
           type={"text"}
           value={number}
           onChange={handleINumberChange}
         />
         <Input
-          className="form__input"
           label={"Email"}
           type={"email"}
           value={email}
@@ -179,11 +177,19 @@ export default function AddTA() {
           value={certificate}
           onChange={handleCertificateChange}
         />
-        <div className="form__input form__input-courses">
-          <p>Courses</p>
+        <div className="form__section-courses">
+          <div className="form__section-add">
+            <button
+              className="form__button form__button-add"
+              type="button"
+              onClick={addSection}>
+              <img src={Add} alt="add-icon"></img>
+            </button>
+            <h2>Courses</h2>
+          </div>
           {section.map((input, index) => {
             return (
-              <div key={index}>
+              <div className="form__input-courses" key={index}>
                 <input
                   name="section"
                   type="text"
@@ -195,25 +201,17 @@ export default function AddTA() {
                   className="form__button form__button-remove"
                   type="button"
                   onClick={() => removeSection(index)}>
-                  Remove
+                  <img src={Trash} alt="trash"></img>
                 </button>
               </div>
             );
           })}
         </div>
-
-        <button
-          className="form__button form__button-add"
-          type="button"
-          onClick={addSection}>
-          Add more section...
-        </button>
-        <button
-          className="form__button form__button-submit"
-          type="submit"
-          onClick={handleSubmit}>
-          Submit
-        </button>
+        <div className="form__button-submit">
+          <button type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

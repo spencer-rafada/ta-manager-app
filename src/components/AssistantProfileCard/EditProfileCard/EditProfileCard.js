@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { store } from "../../../firebase.js";
 import { doc, updateDoc } from "firebase/firestore";
 import Input from "../../form/Input/Input.js";
-import InputCheckbox from "../../form/InputCheckbox.js";
+import InputCheckbox from "../../form/InputCheckBox/InputCheckbox.js";
 
 export default function EditProfileCard({ data, setState }) {
   const [first, setFirst] = useState(data.first);
