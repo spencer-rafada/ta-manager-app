@@ -3,6 +3,8 @@ import { store } from "../../firebase.js";
 import { doc, deleteDoc } from "firebase/firestore";
 import ViewProfileCard from "./ViewProfileCard/ViewProfileCard.js";
 import EditProfileCard from "./EditProfileCard/EditProfileCard.js";
+import "./AssistantProfileCard.css";
+import Trash from "../../img/red-trash.svg";
 
 export default function AssistantProfileCard({ data, semester }) {
   const [state, setState] = useState("view");
@@ -22,10 +24,7 @@ export default function AssistantProfileCard({ data, semester }) {
   };
 
   return (
-    <div>
-      <button className="profile__button-delete" onClick={handleDelete}>
-        Delete
-      </button>
+    <div className="profile-card">
       {state === "view" && (
         <ViewProfileCard data={data} setState={handleToggle} />
       )}
@@ -36,6 +35,11 @@ export default function AssistantProfileCard({ data, semester }) {
           setState={handleToggle}
         />
       )}
+      <div className="profile-card__button-remove">
+        <button type="button" onClick={handleDelete}>
+          <img src={Trash} alt="trash"></img>
+        </button>
+      </div>
     </div>
   );
 }

@@ -6,14 +6,14 @@ import Input from "../form/Input/Input.js";
 import InputCheckbox from "../form/InputCheckBox/InputCheckbox.js";
 import Select from "../form/Select/Select.js";
 import { Semester, Status } from "../../data/DataSelection.js";
-import Trash from "../../img/red-trash.svg";
 import Add from "../../img/add-new.png";
+import Trash from "../../img/red-trash.svg";
 
 export default function AddTA() {
   const [f_name, setFName] = useState("");
   const [l_name, setLName] = useState("");
   const [ta_type, setType] = useState("");
-  const [status, setStatus] = useState(Status[0].status);
+  const [status, setStatus] = useState(Status[0].value);
   const [number, setNumber] = useState("");
   const [section, setSection] = useState([{ section: "" }]);
   const [email, setEmail] = useState("");
@@ -106,6 +106,7 @@ export default function AddTA() {
       enrolled: enrolled,
       trained: trained,
       certificate: certificate,
+      hired: semester,
     };
     addData(data);
   };

@@ -1,5 +1,6 @@
 import React from "react";
 import AssistantProfileCard from "../AssistantProfileCard/AssistantProfileCard.js";
+import "./AssistantCards.style.css";
 
 function AssistantCards({ tadata, semester }) {
   return (

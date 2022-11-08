@@ -79,7 +79,7 @@ export default function EditProfileCard({ data, setState, semester }) {
   };
 
   return (
-    <div className="form-edit">
+    <div className="profile-card__form-edit">
       <button
         className="form-edit__button form-edit__button-edit"
         type="button"
