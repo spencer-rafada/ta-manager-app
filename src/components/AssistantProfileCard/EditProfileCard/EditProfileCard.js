@@ -4,7 +4,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import Input from "../../form/Input/Input.js";
 import InputCheckbox from "../../form/InputCheckBox/InputCheckbox.js";
 
-export default function EditProfileCard({ data, setState }) {
+export default function EditProfileCard({ data, setState, semester }) {
   const [first, setFirst] = useState(data.first);
   const [last, setLast] = useState(data.last);
   const [ta_type, setType] = useState(data.type);
@@ -64,7 +64,7 @@ export default function EditProfileCard({ data, setState }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const docRef = doc(store, "ta", data.id);
+    const docRef = doc(store, semester, data.id);
     await updateDoc(docRef, {
       first: first,
       last: last,
@@ -131,19 +131,19 @@ export default function EditProfileCard({ data, setState }) {
         <InputCheckbox
           label={"Enrolled in Training Course"}
           type={"checkbox"}
-          checked={enrolled}
+          value={enrolled}
           onChange={handleEnrolledChange}
         />
         <InputCheckbox
           label={"Completed Training"}
           type={"checkbox"}
-          checked={trained}
+          value={trained}
           onChange={handleTrainingChange}
         />
         <InputCheckbox
           label={"Received Certificate"}
           type={"checkbox"}
-          checked={certificate}
+          value={certificate}
           onChange={handleCertificateChange}
         />
         <div className="form-edit__input form-edit__input-courses">

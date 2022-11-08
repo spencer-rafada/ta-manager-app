@@ -5,3 +5,9 @@ export const Semester = [
   { title: "Fall 2023", value: "F23" },
   { title: "Winter 2024", value: "W24" },
 ];
+
+export const Status = [
+  { title: "New TA", value: "New" },
+  { title: "Returning TA", value: "Returning" },
+  { title: "Quit", value: "Quit" },
+];

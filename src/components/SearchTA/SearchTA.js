@@ -4,7 +4,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import AssistantCards from "../AssistantCards/AssistantCards.js";
 import "./SearchTA.style.css";
 import Select from "../form/Select/Select.js";
-import { Semester } from "../../data/SemesterSelection.js";
+import { Semester } from "../../data/DataSelection.js";
 
 function SearchTA() {
   const [searchText, setSearchText] = useState("");
@@ -79,7 +79,7 @@ function SearchTA() {
           />
         </form>
         <Select
-          semester={semester}
+          status={semester}
           onChange={handleSemesterChange}
           options={Semester}
         />
@@ -90,7 +90,7 @@ function SearchTA() {
         </div>
       </div>
 
-      <AssistantCards tadata={results} />
+      <AssistantCards tadata={results} semester={semester} />
     </div>
   );
 }

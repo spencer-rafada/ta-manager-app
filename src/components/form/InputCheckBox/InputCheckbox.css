@@ -16,4 +16,25 @@
 }
 .input__checkbox label:checked:after {
   background-color: hsl(140deg, 88%, 16%);
+}
+
+@media only screen and (max-width: 600px) {
+  .input__checkbox {
+    display: flex;
+    color: hsl(140deg, 92%, 9%);
+    font-size: 15px;
+    margin-left: 15%;
+  }
+  .input__checkbox input {
+    height: 15px;
+    width: 15px;
+  }
+  .input__checkbox label {
+    text-transform: uppercase;
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  .input__checkbox label:checked:after {
+    background-color: hsl(140deg, 88%, 16%);
+  }
 }/*# sourceMappingURL=InputCheckbox.css.map */

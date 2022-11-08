@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@500;700&display=swap");
 .form {
   width: 450px;
-  border: 10px solid hsl(140deg, 88%, 16%);
+  border: 5px solid hsl(140deg, 88%, 16%);
   border-radius: 30px;
   padding: 20px;
   font-size: 20px;
@@ -9,7 +9,7 @@
   margin: 10px;
 }
 .form .form__title {
-  font-size: 30px;
+  font-size: 40px;
   color: hsl(140deg, 88%, 16%);
   text-transform: uppercase;
   text-align: center;
@@ -18,8 +18,21 @@
 .form .form__title h1 {
   margin: 0;
 }
+.form .form__select-endjustify {
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+.form .form__input__select-status {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.form .form__input__select-status .justify {
+  display: flex;
+  justify-content: center;
+}
 .form .form__input-radio {
-  text-align: center;
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 20px;
@@ -62,7 +75,7 @@
   justify-content: center;
 }
 .form .form__section-courses .form__input-courses input {
-  font-size: 20px;
+  font-size: 18px;
   width: 70%;
   height: 20px;
   border-radius: 8px;
@@ -89,9 +102,33 @@
   border: none;
   padding: 10px;
   border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 .form .form__button-submit button:hover {
   cursor: pointer;
   color: white;
   background-color: hsl(140deg, 92%, 9%);
+}
+
+@media only screen and (max-width: 600px) {
+  .form {
+    width: 350px;
+    border: 5px solid hsl(140deg, 88%, 16%);
+    font-size: 15px;
+    margin: 0px;
+  }
+  .form .form__title {
+    font-size: 25px;
+  }
+  .form .form__input-radio {
+    font-size: 15px;
+  }
+  .form .form__input-courses input {
+    font-size: 15px;
+  }
+  .form .form__button-submit button {
+    font-size: 15px;
+  }
 }/*# sourceMappingURL=AddTA.style.css.map */

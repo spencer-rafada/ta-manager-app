@@ -4,7 +4,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import ViewProfileCard from "./ViewProfileCard/ViewProfileCard.js";
 import EditProfileCard from "./EditProfileCard/EditProfileCard.js";
 
-export default function AssistantProfileCard({ data }) {
+export default function AssistantProfileCard({ data, semester }) {
   const [state, setState] = useState("view");
 
   const handleToggle = () => {
@@ -30,7 +30,11 @@ export default function AssistantProfileCard({ data }) {
         <ViewProfileCard data={data} setState={handleToggle} />
       )}
       {state === "edit" && (
-        <EditProfileCard data={data} setState={handleToggle} />
+        <EditProfileCard
+          data={data}
+          semester={semester}
+          setState={handleToggle}
+        />
       )}
     </div>
   );

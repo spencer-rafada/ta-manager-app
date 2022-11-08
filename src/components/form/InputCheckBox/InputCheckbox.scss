@@ -21,3 +21,24 @@ $black: hsl(0, 0%, 0%);
         background-color: $green;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .input__checkbox {
+        display: flex;
+        color: $dark-green;
+        font-size: 15px;
+        margin-left: 15%;
+        input {
+            height: 15px;
+            width: 15px;
+        }
+        label {
+            text-transform: uppercase;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        label:checked:after {
+            background-color: $green;
+        }
+    }
+}

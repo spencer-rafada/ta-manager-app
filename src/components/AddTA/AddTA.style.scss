@@ -5,14 +5,14 @@ $black: hsl(0, 0%, 0%);
 
 .form {
     width: 450px;
-    border: 10px solid $green;
+    border: 5px solid $green;
     border-radius: 30px;
     padding: 20px;
     font-size: 20px;
     color: $dark-green;
     margin: 10px;
     .form__title {
-        font-size: 30px;
+        font-size: 40px;
         color: $green;
         text-transform: uppercase;
         text-align: center;
@@ -21,8 +21,24 @@ $black: hsl(0, 0%, 0%);
             margin: 0;
         }
     }
+
+    .form__select-endjustify {
+        display: flex;
+        justify-content: end;
+        margin-right: 10px;
+        margin-bottom: 20px;
+    }
+
+    .form__input__select-status {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .justify {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    
     .form__input-radio {
-        text-align: center;
         font-weight: bold;
         font-size: 20px;
         margin-bottom: 20px;
@@ -68,7 +84,7 @@ $black: hsl(0, 0%, 0%);
             align-items: center;
             justify-content: center;
             input {
-                font-size: 20px;
+                font-size: 18px;
                 width: 70%;
                 height: 20px;
                 border-radius: 8px;
@@ -96,11 +112,43 @@ $black: hsl(0, 0%, 0%);
             border: none;
             padding: 10px;
             border-radius: 8px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
         button:hover {
             cursor: pointer;
             color: white;
             background-color: $dark-green;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .form {
+        width: 350px;
+        border: 5px solid $green;
+        font-size: 15px;
+        margin: 0px;
+        .form__title {
+            font-size: 25px;
+        }
+
+        .form__input-radio {
+            font-size: 15px;
+        }
+
+        .form__input-courses {
+            input {
+                font-size: 15px;
+            }
+        }
+        
+        .form__button-submit {
+            button{
+                font-size: 15px;
+            }
         }
     }
 }

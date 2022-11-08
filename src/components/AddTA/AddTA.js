@@ -5,7 +5,7 @@ import "./AddTA.style.css";
 import Input from "../form/Input/Input.js";
 import InputCheckbox from "../form/InputCheckBox/InputCheckbox.js";
 import Select from "../form/Select/Select.js";
-import { Semester } from "../../data/SemesterSelection.js";
+import { Semester, Status } from "../../data/DataSelection.js";
 import Trash from "../../img/red-trash.svg";
 import Add from "../../img/add-new.png";
 
@@ -13,6 +13,7 @@ export default function AddTA() {
   const [f_name, setFName] = useState("");
   const [l_name, setLName] = useState("");
   const [ta_type, setType] = useState("");
+  const [status, setStatus] = useState(Status[0].status);
   const [number, setNumber] = useState("");
   const [section, setSection] = useState([{ section: "" }]);
   const [email, setEmail] = useState("");
@@ -77,6 +78,10 @@ export default function AddTA() {
     setSemester(e.target.value);
   };
 
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
+  };
+
   const addData = async (data) => {
     try {
       const docRef = await addDoc(collection(store, semester), data);
@@ -94,6 +99,7 @@ export default function AddTA() {
       first: f_name,
       last: l_name,
       type: ta_type,
+      status: status,
       i_number: number,
       courses: section,
       email: email,
@@ -109,11 +115,13 @@ export default function AddTA() {
       <div className="form__title">
         <h1>Add</h1>
       </div>
-      <Select
-        semester={semester}
-        onChange={handleSemesterChange}
-        options={Semester}
-      />
+      <div className="form__select-endjustify">
+        <Select
+          status={semester}
+          onChange={handleSemesterChange}
+          options={Semester}
+        />
+      </div>
       <form onSubmit={handleSubmit}>
         <Input
           label={"First Name"}
@@ -127,25 +135,34 @@ export default function AddTA() {
           value={l_name}
           onChange={handleLNameChange}
         />
-        <div className="form__input form__input-radio">
-          <label>
-            <input
-              type="radio"
-              value="IL"
-              checked={ta_type === "IL"}
-              onChange={handleTypeChange}
+        <div className="form__input__select-status">
+          <div className="justify">
+            <Select
+              status={status}
+              onChange={handleStatusChange}
+              options={Status}
             />
-            IL-TA
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="CM"
-              checked={ta_type === "CM"}
-              onChange={handleTypeChange}
-            />
-            CM-TA
-          </label>
+          </div>
+          <div className="form__input form__input-radio">
+            <label>
+              <input
+                type="radio"
+                value="IL"
+                checked={ta_type === "IL"}
+                onChange={handleTypeChange}
+              />
+              IL-TA
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="CM"
+                checked={ta_type === "CM"}
+                onChange={handleTypeChange}
+              />
+              CM-TA
+            </label>
+          </div>
         </div>
         <Input
           label={"I-Number"}

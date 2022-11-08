@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { store } from "../../firebase.js";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import Select from "../form/Select/Select.js";
-import { Semester } from "../../data/SemesterSelection.js";
+import { Semester } from "../../data/DataSelection.js";
 
 export default function MoveCollection() {
   const [fromCollection, setFromCollection] = useState(Semester[0].value);
@@ -37,13 +37,13 @@ export default function MoveCollection() {
     <div>
       <div>MoveCollection</div>
       <Select
-        semester={fromCollection}
+        status={fromCollection}
         onChange={handleFromCollectionChange}
         options={Semester}
       />
       <p>to</p>
       <Select
-        semester={toCollection}
+        status={toCollection}
         onChange={handleToCollectionChange}
         options={Semester}
       />
