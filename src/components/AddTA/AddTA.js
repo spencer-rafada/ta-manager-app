@@ -8,6 +8,7 @@ import Select from "../form/Select/Select.js";
 import { Semester, Status } from "../../data/DataSelection.js";
 import Add from "../../img/add-new.png";
 import Trash from "../../img/red-trash.svg";
+import Error from "../../img/error_icon.svg";
 
 export default function AddTA() {
   const [f_name, setFName] = useState("");
@@ -21,6 +22,11 @@ export default function AddTA() {
   const [trained, setTrained] = useState(false);
   const [certificate, setCertificate] = useState(false);
   const [semester, setSemester] = useState(Semester[0].value);
+
+  // Validation
+  const [isFilled, setIsFilled] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const handleFNameChange = (e) => {
     setFName(e.target.value);
@@ -91,10 +97,65 @@ export default function AddTA() {
     }
   };
 
+  const validateFields = () => {
+    // validate fields: Required data is First Name, Last Name, Type, I-Number, Email, Courses
+    let errorMessage = "";
+    if (f_name.length === 0) {
+      errorMessage = "First Name";
+    }
+    if (l_name.length === 0) {
+      if (errorMessage.length !== 0) {
+        errorMessage = errorMessage + ", ";
+      }
+      errorMessage = errorMessage + "Last Name";
+    }
+    if (ta_type.length === 0) {
+      if (errorMessage.length !== 0) {
+        errorMessage = errorMessage + ", ";
+      }
+      errorMessage = errorMessage + "Type";
+    }
+    if (number.length === 0) {
+      if (errorMessage.length !== 0) {
+        errorMessage = errorMessage + ", ";
+      }
+      errorMessage = errorMessage + "I-Number";
+    }
+    if (email.length === 0) {
+      if (errorMessage.length !== 0) {
+        errorMessage = errorMessage + ", ";
+      }
+      errorMessage = errorMessage + "Email";
+    }
+    if (section.length === 0) {
+      if (errorMessage.length !== 0) {
+        errorMessage = errorMessage + ", ";
+      }
+      errorMessage = errorMessage + "Courses";
+    }
+
+    console.log(errorMessage);
+    if (errorMessage.length === 0) {
+      setIsFilled(true);
+    } else {
+      setErrorMsg(errorMessage);
+      setIsFilled(false);
+      errorMessage = "";
+    }
+  };
+
   // handle submit form. put all values to JSON and send to DB
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("TA has been added to DB");
+    setShowError(false);
+    setIsFilled(true);
+    // Validate
+    validateFields();
+    if (!isFilled) {
+      setShowError(true);
+      return;
+    }
+    alert(`${f_name} ${l_name} has been added to ${semester}`);
     const data = {
       first: f_name,
       last: l_name,
@@ -109,6 +170,7 @@ export default function AddTA() {
       hired: semester,
     };
     addData(data);
+    setShowError(false);
   };
 
   return (
@@ -116,6 +178,12 @@ export default function AddTA() {
       <div className="form__title">
         <h1>Add</h1>
       </div>
+      {showError && (
+        <div className="form__error">
+          <img src={Error} alt="error"></img>
+          <p>{errorMsg}</p>
+        </div>
+      )}
       <div className="form__select-endjustify">
         <Select
           status={semester}

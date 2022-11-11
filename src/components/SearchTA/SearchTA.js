@@ -11,8 +11,7 @@ function SearchTA() {
   const [results, setResults] = useState([]);
   const [semester, setSemester] = useState(Semester[0].value);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     const searchResult = [];
     setResults([]);
     const taRef = collection(store, semester);
@@ -50,6 +49,12 @@ function SearchTA() {
     setSemester(e.target.value);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   const handleViewAll = async () => {
     const searchResult = [];
     setResults([]);
@@ -68,16 +73,16 @@ function SearchTA() {
     <div>
       <div className="search_container">
         <p className="search_title">Search TA</p>
-        <form onSubmit={handleSubmit}>
-          <input
-            className="search_input"
-            type="text"
-            placeholder="SEARCH..."
-            required
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-        </form>
+        <input
+          className="search_input"
+          type="text"
+          placeholder="SEARCH..."
+          required
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+
         <Select
           status={semester}
           onChange={handleSemesterChange}

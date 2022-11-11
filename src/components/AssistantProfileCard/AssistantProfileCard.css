@@ -46,6 +46,8 @@
 .profile-card .profile-card-view .card__info-courses ul {
   list-style-type: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .profile-card .profile-card-view .card__info-courses li {
   display: inline;

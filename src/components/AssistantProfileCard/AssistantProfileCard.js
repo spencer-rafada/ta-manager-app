@@ -18,7 +18,7 @@ export default function AssistantProfileCard({ data, semester }) {
   };
 
   const handleDelete = async () => {
-    const docRef = doc(store, "ta", data.id);
+    const docRef = doc(store, semester, data.id);
     await deleteDoc(docRef);
     // alert("TA has been deleted.");
   };

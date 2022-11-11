@@ -18,6 +18,22 @@
 .form .form__title h1 {
   margin: 0;
 }
+.form .form__error {
+  border: 3px solid red;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.form .form__error img {
+  width: 25px;
+  margin: 10px;
+}
+.form .form__error p {
+  display: inline;
+  font-size: 14px;
+  color: red;
+  font-weight: 700;
+}
 .form .form__select-endjustify {
   display: flex;
   justify-content: end;
