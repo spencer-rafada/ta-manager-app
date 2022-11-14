@@ -8,40 +8,28 @@ import Select from "../form/Select/Select.js";
 import { Semester, Status } from "../../data/DataSelection.js";
 import Add from "../../img/add-new.png";
 import Trash from "../../img/red-trash.svg";
-import Error from "../../img/error_icon.svg";
 
 export default function AddTA() {
-  const [f_name, setFName] = useState("");
-  const [l_name, setLName] = useState("");
-  const [ta_type, setType] = useState("");
-  const [status, setStatus] = useState(Status[0].value);
-  const [number, setNumber] = useState("");
+  const [values, setValues] = useState({
+    first: "",
+    last: "",
+    type: "",
+    status: Status[0].value,
+    i_number: "",
+    email: "",
+    hired: Semester[0].value,
+  });
+  //     courses: section,
+  //     hired: semester,
   const [section, setSection] = useState([{ section: "" }]);
-  const [email, setEmail] = useState("");
   const [enrolled, setEnrolled] = useState(false);
   const [trained, setTrained] = useState(false);
   const [certificate, setCertificate] = useState(false);
-  const [semester, setSemester] = useState(Semester[0].value);
 
-  // Validation
-  const [isFilled, setIsFilled] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [showError, setShowError] = useState(false);
-
-  const handleFNameChange = (e) => {
-    setFName(e.target.value);
-  };
-
-  const handleLNameChange = (e) => {
-    setLName(e.target.value);
-  };
-
-  const handleINumberChange = (e) => {
-    setNumber(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const onChange = (key) => {
+    return ({ target: { value } }) => {
+      setValues((oldValues) => ({ ...oldValues, [key]: value }));
+    };
   };
 
   const handleEnrolledChange = () => {
@@ -54,10 +42,6 @@ export default function AddTA() {
 
   const handleCertificateChange = () => {
     setCertificate(!certificate);
-  };
-
-  const handleTypeChange = (e) => {
-    setType(e.target.value);
   };
 
   // handle additional sections
@@ -80,97 +64,34 @@ export default function AddTA() {
     setSection(data);
   };
 
-  const handleSemesterChange = (e) => {
-    setSemester(e.target.value);
-  };
-
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
-  };
-
   const addData = async (data) => {
     try {
-      const docRef = await addDoc(collection(store, semester), data);
+      const docRef = await addDoc(collection(store, values.hired), data);
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.log("Error adding document: ", e);
     }
   };
 
-  const validateFields = () => {
-    // validate fields: Required data is First Name, Last Name, Type, I-Number, Email, Courses
-    let errorMessage = "";
-    if (f_name.length === 0) {
-      errorMessage = "First Name";
-    }
-    if (l_name.length === 0) {
-      if (errorMessage.length !== 0) {
-        errorMessage = errorMessage + ", ";
-      }
-      errorMessage = errorMessage + "Last Name";
-    }
-    if (ta_type.length === 0) {
-      if (errorMessage.length !== 0) {
-        errorMessage = errorMessage + ", ";
-      }
-      errorMessage = errorMessage + "Type";
-    }
-    if (number.length === 0) {
-      if (errorMessage.length !== 0) {
-        errorMessage = errorMessage + ", ";
-      }
-      errorMessage = errorMessage + "I-Number";
-    }
-    if (email.length === 0) {
-      if (errorMessage.length !== 0) {
-        errorMessage = errorMessage + ", ";
-      }
-      errorMessage = errorMessage + "Email";
-    }
-    if (section.length === 0) {
-      if (errorMessage.length !== 0) {
-        errorMessage = errorMessage + ", ";
-      }
-      errorMessage = errorMessage + "Courses";
-    }
-
-    console.log(errorMessage);
-    if (errorMessage.length === 0) {
-      setIsFilled(true);
-    } else {
-      setErrorMsg(errorMessage);
-      setIsFilled(false);
-      errorMessage = "";
-    }
-  };
-
   // handle submit form. put all values to JSON and send to DB
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowError(false);
-    setIsFilled(true);
-    // Validate
-    validateFields();
-    if (!isFilled) {
-      setShowError(true);
-      return;
-    }
-    alert(`${f_name} ${l_name} has been added to ${semester}`);
+
+    alert(`${values.first} ${values.last} has been added to ${values.hired}`);
     const data = {
-      first: f_name,
-      last: l_name,
-      type: ta_type,
-      status: status,
-      i_number: number,
+      first: values.first,
+      last: values.last,
+      type: values.type,
+      status: values.status,
+      i_number: values.i_number,
       courses: section,
-      email: email,
+      email: values.email,
       enrolled: enrolled,
       trained: trained,
       certificate: certificate,
-      hired: semester,
+      hired: values.hired,
     };
     addData(data);
-    setShowError(false);
   };
 
   return (
@@ -178,16 +99,10 @@ export default function AddTA() {
       <div className="form__title">
         <h1>Add</h1>
       </div>
-      {showError && (
-        <div className="form__error">
-          <img src={Error} alt="error"></img>
-          <p>{errorMsg}</p>
-        </div>
-      )}
       <div className="form__select-endjustify">
         <Select
-          status={semester}
-          onChange={handleSemesterChange}
+          status={values.hired}
+          onChange={onChange("hired")}
           options={Semester}
         />
       </div>
@@ -195,20 +110,20 @@ export default function AddTA() {
         <Input
           label={"First Name"}
           type={"text"}
-          value={f_name}
-          onChange={handleFNameChange}
+          value={values.first}
+          onChange={onChange("first")}
         />
         <Input
           label={"Last Name"}
           type={"text"}
-          value={l_name}
-          onChange={handleLNameChange}
+          value={values.last}
+          onChange={onChange("last")}
         />
         <div className="form__input__select-status">
           <div className="justify">
             <Select
-              status={status}
-              onChange={handleStatusChange}
+              status={values.status}
+              onChange={onChange("status")}
               options={Status}
             />
           </div>
@@ -217,8 +132,8 @@ export default function AddTA() {
               <input
                 type="radio"
                 value="IL"
-                checked={ta_type === "IL"}
-                onChange={handleTypeChange}
+                checked={values.type === "IL"}
+                onChange={onChange("type")}
               />
               IL-TA
             </label>
@@ -226,8 +141,8 @@ export default function AddTA() {
               <input
                 type="radio"
                 value="CM"
-                checked={ta_type === "CM"}
-                onChange={handleTypeChange}
+                checked={values.type === "CM"}
+                onChange={onChange("type")}
               />
               CM-TA
             </label>
@@ -236,14 +151,14 @@ export default function AddTA() {
         <Input
           label={"I-Number"}
           type={"text"}
-          value={number}
-          onChange={handleINumberChange}
+          value={values.i_number}
+          onChange={onChange("i_number")}
         />
         <Input
           label={"Email"}
           type={"email"}
-          value={email}
-          onChange={handleEmailChange}
+          value={values.email}
+          onChange={onChange("email")}
         />
         <InputCheckbox
           label={"Enrolled in Training Course"}
