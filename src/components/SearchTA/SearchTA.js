@@ -1,19 +1,23 @@
 import { React, useState } from "react";
 import { store } from "../../firebase.js";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import AssistantCards from "../AssistantCards/AssistantCards.js";
-import "./SearchTA.style.css";
 import Select from "../form/Select/Select.js";
+import AddTA from "../AddTA/AddTA.js";
 import { Semester } from "../../data/DataSelection.js";
+import "./SearchTA.style.css";
 
-function SearchTA() {
+function SearchTA({ onSearch, semester, onSemesterChange }) {
   const [searchText, setSearchText] = useState("");
-  const [results, setResults] = useState([]);
-  const [semester, setSemester] = useState(Semester[0].value);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleSubmit = async () => {
+    if (searchText.length === 0) {
+      handleViewAll();
+      return;
+    }
+
     const searchResult = [];
-    setResults([]);
+    onSearch([]);
     const taRef = collection(store, semester);
 
     const firstQuery = query(taRef, where("first", "==", searchText));
@@ -41,12 +45,8 @@ function SearchTA() {
       const data = { ...id, ...doc.data() };
       searchResult.push(data);
     });
-    setResults(searchResult);
+    onSearch(searchResult);
     console.log(searchResult);
-  };
-
-  const handleSemesterChange = (e) => {
-    setSemester(e.target.value);
   };
 
   const handleKeyDown = (e) => {
@@ -57,7 +57,7 @@ function SearchTA() {
 
   const handleViewAll = async () => {
     const searchResult = [];
-    setResults([]);
+    onSearch([]);
     const taRef = collection(store, semester);
     const snapshot = await getDocs(taRef);
     snapshot.forEach((doc) => {
@@ -66,36 +66,39 @@ function SearchTA() {
       const data = { ...id, ...doc.data() };
       searchResult.push(data);
     });
-    setResults(searchResult);
+    onSearch(searchResult);
+  };
+
+  const handleCloseModalVisibility = () => {
+    setModalVisible(false);
   };
 
   return (
-    <div>
-      <div className="search_container">
-        <p className="search_title">Search TA</p>
-        <input
-          className="search_input"
-          type="text"
-          placeholder="SEARCH..."
-          required
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
+    <div className="search_container">
+      <input
+        className="search_input"
+        type="text"
+        placeholder="Search First Name or Last Name or I-Number..."
+        required
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
 
-        <Select
-          status={semester}
-          onChange={handleSemesterChange}
-          options={Semester}
-        />
-        <div>
-          <button type="button" onClick={handleViewAll}>
-            View All
-          </button>
-        </div>
-      </div>
+      <Select
+        status={semester}
+        onChange={onSemesterChange}
+        options={Semester}
+      />
 
-      <AssistantCards tadata={results} semester={semester} />
+      {/* Modal Visibility */}
+      <button type="button" onClick={() => setModalVisible(true)}>
+        Add
+      </button>
+      <AddTA
+        modalVisible={modalVisible}
+        setModalVisible={handleCloseModalVisibility}
+      />
     </div>
   );
 }

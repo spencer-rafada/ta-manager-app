@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Admin } from "./views/index.js";
+import { Admin, Dashboard } from "./views/index.js";
 import NavBar from "./components/layout/NavBar.js";
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
+          <Route exact path="/" element={<Dashboard />}></Route>
           <Route exact path="/admin" element={<Admin />}></Route>
         </Routes>
       </Router>

@@ -43,12 +43,7 @@ export default function ViewProfileCard({ data, setState }) {
       </div>
       <div className="card__button-status">
         <button type="button" onClick={handleStatusChange}>
-          <img
-            style={
-              status ? { transform: "rotate(90)" } : { transform: "rotate(0)" }
-            }
-            src={RightArrow}
-            alt="triangle-status"></img>
+          <img src={RightArrow} alt="triangle-status"></img>
           <p>Check Status</p>
         </button>
       </div>
