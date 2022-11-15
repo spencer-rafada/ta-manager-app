@@ -103,9 +103,9 @@ export default function AddTA({ modalVisible, setModalVisible }) {
         <button className="form__button-close" onClick={setModalVisible}>
           X
         </button>
-        <div className="form__title">
+        {/* <div className="form__title">
           <h1>Add</h1>
-        </div>
+        </div> */}
         <div className="form__select-endjustify">
           <Select
             status={values.hired}
