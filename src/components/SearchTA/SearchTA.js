@@ -2,11 +2,13 @@ import { React, useState } from "react";
 import { store } from "../../firebase.js";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Select from "../form/Select/Select.js";
+import AddTA from "../AddTA/AddTA.js";
 import { Semester } from "../../data/DataSelection.js";
 import "./SearchTA.style.css";
 
 function SearchTA({ onSearch, semester, onSemesterChange }) {
   const [searchText, setSearchText] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleSubmit = async () => {
     if (searchText.length === 0) {
@@ -67,6 +69,10 @@ function SearchTA({ onSearch, semester, onSemesterChange }) {
     onSearch(searchResult);
   };
 
+  const handleCloseModalVisibility = () => {
+    setModalVisible(false);
+  };
+
   return (
     <div className="search_container">
       <input
@@ -83,6 +89,15 @@ function SearchTA({ onSearch, semester, onSemesterChange }) {
         status={semester}
         onChange={onSemesterChange}
         options={Semester}
+      />
+
+      {/* Modal Visibility */}
+      <button type="button" onClick={() => setModalVisible(true)}>
+        Add
+      </button>
+      <AddTA
+        modalVisible={modalVisible}
+        setModalVisible={handleCloseModalVisibility}
       />
     </div>
   );

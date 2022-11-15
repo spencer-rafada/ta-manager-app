@@ -9,7 +9,10 @@ import { Semester, Status } from "../../data/DataSelection.js";
 import Add from "../../img/add-new.png";
 import Trash from "../../img/red-trash.svg";
 
-export default function AddTA() {
+export default function AddTA({ modalVisible, setModalVisible }) {
+  const showModalClassName = modalVisible
+    ? "modal display-block"
+    : "modal display-none";
   const [values, setValues] = useState({
     first: "",
     last: "",
@@ -95,125 +98,130 @@ export default function AddTA() {
   };
 
   return (
-    <div className="form">
-      <div className="form__title">
-        <h1>Add</h1>
-      </div>
-      <div className="form__select-endjustify">
-        <Select
-          status={values.hired}
-          onChange={onChange("hired")}
-          options={Semester}
-        />
-      </div>
-      <form onSubmit={handleSubmit}>
-        <Input
-          label={"First Name"}
-          type={"text"}
-          value={values.first}
-          onChange={onChange("first")}
-        />
-        <Input
-          label={"Last Name"}
-          type={"text"}
-          value={values.last}
-          onChange={onChange("last")}
-        />
-        <div className="form__input__select-status">
-          <div className="justify">
-            <Select
-              status={values.status}
-              onChange={onChange("status")}
-              options={Status}
-            />
-          </div>
-          <div className="form__input form__input-radio">
-            <label>
-              <input
-                type="radio"
-                value="IL"
-                checked={values.type === "IL"}
-                onChange={onChange("type")}
-              />
-              IL-TA
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="CM"
-                checked={values.type === "CM"}
-                onChange={onChange("type")}
-              />
-              CM-TA
-            </label>
-          </div>
+    <div className={showModalClassName}>
+      <div className="form">
+        <button className="form__button-close" onClick={setModalVisible}>
+          X
+        </button>
+        <div className="form__title">
+          <h1>Add</h1>
         </div>
-        <Input
-          label={"I-Number"}
-          type={"text"}
-          value={values.i_number}
-          onChange={onChange("i_number")}
-        />
-        <Input
-          label={"Email"}
-          type={"email"}
-          value={values.email}
-          onChange={onChange("email")}
-        />
-        <InputCheckbox
-          label={"Enrolled in Training Course"}
-          type={"checkbox"}
-          value={enrolled}
-          onChange={handleEnrolledChange}
-        />
-        <InputCheckbox
-          label={"Completed Training"}
-          type={"checkbox"}
-          value={trained}
-          onChange={handleTrainingChange}
-        />
-        <InputCheckbox
-          label={"Received Certificate"}
-          type={"checkbox"}
-          value={certificate}
-          onChange={handleCertificateChange}
-        />
-        <div className="form__section-courses">
-          <div className="form__section-add">
-            <button
-              className="form__button form__button-add"
-              type="button"
-              onClick={addSection}>
-              <img src={Add} alt="add-icon"></img>
-            </button>
-            <h2>Courses</h2>
-          </div>
-          {section.map((input, index) => {
-            return (
-              <div className="form__input-courses" key={index}>
+        <div className="form__select-endjustify">
+          <Select
+            status={values.hired}
+            onChange={onChange("hired")}
+            options={Semester}
+          />
+        </div>
+        <form onSubmit={handleSubmit}>
+          <Input
+            label={"First Name"}
+            type={"text"}
+            value={values.first}
+            onChange={onChange("first")}
+          />
+          <Input
+            label={"Last Name"}
+            type={"text"}
+            value={values.last}
+            onChange={onChange("last")}
+          />
+          <div className="form__input__select-status">
+            <div className="justify">
+              <Select
+                status={values.status}
+                onChange={onChange("status")}
+                options={Status}
+              />
+            </div>
+            <div className="form__input form__input-radio">
+              <label>
                 <input
-                  name="section"
-                  type="text"
-                  placeholder="Section"
-                  value={section.section}
-                  onChange={(event) => handleFormChange(index, event)}
+                  type="radio"
+                  value="IL"
+                  checked={values.type === "IL"}
+                  onChange={onChange("type")}
                 />
-                <button
-                  className="form__button form__button-remove"
-                  type="button"
-                  onClick={() => removeSection(index)}>
-                  <img src={Trash} alt="trash"></img>
-                </button>
-              </div>
-            );
-          })}
-        </div>
-        <div className="form__button-submit">
-          <button type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
-        </div>
-      </form>
+                IL-TA
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="CM"
+                  checked={values.type === "CM"}
+                  onChange={onChange("type")}
+                />
+                CM-TA
+              </label>
+            </div>
+          </div>
+          <Input
+            label={"I-Number"}
+            type={"text"}
+            value={values.i_number}
+            onChange={onChange("i_number")}
+          />
+          <Input
+            label={"Email"}
+            type={"email"}
+            value={values.email}
+            onChange={onChange("email")}
+          />
+          <InputCheckbox
+            label={"Enrolled in Training Course"}
+            type={"checkbox"}
+            value={enrolled}
+            onChange={handleEnrolledChange}
+          />
+          <InputCheckbox
+            label={"Completed Training"}
+            type={"checkbox"}
+            value={trained}
+            onChange={handleTrainingChange}
+          />
+          <InputCheckbox
+            label={"Received Certificate"}
+            type={"checkbox"}
+            value={certificate}
+            onChange={handleCertificateChange}
+          />
+          <div className="form__section-courses">
+            <div className="form__section-add">
+              <button
+                className="form__button form__button-add"
+                type="button"
+                onClick={addSection}>
+                <img src={Add} alt="add-icon"></img>
+              </button>
+              <h2>Courses</h2>
+            </div>
+            {section.map((input, index) => {
+              return (
+                <div className="form__input-courses" key={index}>
+                  <input
+                    name="section"
+                    type="text"
+                    placeholder="Section"
+                    value={section.section}
+                    onChange={(event) => handleFormChange(index, event)}
+                  />
+                  <button
+                    className="form__button form__button-remove"
+                    type="button"
+                    onClick={() => removeSection(index)}>
+                    <img src={Trash} alt="trash"></img>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+          <div className="form__button-submit">
+            <button type="submit" onClick={handleSubmit}>
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

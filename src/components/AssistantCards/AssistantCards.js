@@ -8,7 +8,7 @@ function AssistantCards({ tadata, semester }) {
       {tadata.map((info, index) => {
         return (
           <div className="cardlist__cards" key={index}>
-            <AssistantProfileCard data={info} semester={semester} />;
+            <AssistantProfileCard data={info} semester={semester} />
           </div>
         );
       })}
