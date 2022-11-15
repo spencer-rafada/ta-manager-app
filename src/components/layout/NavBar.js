@@ -5,13 +5,9 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
     <nav className="nav">
-      <div>Home</div>
+      <Link to="/">Dashboard</Link>
       <div>View</div>
-      <div>
-        <Link style={{ textDecoration: "none" }} to="/admin">
-          Admin
-        </Link>
-      </div>
+      <Link to="/admin">Admin</Link>
       <div>About</div>
     </nav>
   );
