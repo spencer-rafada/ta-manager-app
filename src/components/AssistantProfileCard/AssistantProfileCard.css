@@ -76,4 +76,11 @@
 }
 .profile-card .profile-card-view .card__button-status button:hover {
   cursor: pointer;
+}
+.profile-card .profile-card__form-edit .form-edit__button-edit {
+  border: none;
+  text-decoration: underline;
+  font-style: italic;
+  letter-spacing: 3px;
+  color: blue;
 }/*# sourceMappingURL=AssistantProfileCard.css.map */

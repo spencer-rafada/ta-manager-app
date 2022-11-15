@@ -88,5 +88,13 @@ $black: hsl(0, 0%, 0%);
     }
 
     /* Edit */
-    // .profile-card__form-edit{}
+    .profile-card__form-edit{
+        .form-edit__button-edit {
+            border: none;
+            text-decoration: underline;
+            font-style: italic;
+            letter-spacing: 3px;
+            color: blue;
+        }
+    }
 }
