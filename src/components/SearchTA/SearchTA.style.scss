@@ -15,4 +15,16 @@ $dark-green: hsl(140, 92%, 9%);
         color: $dark-green;
         margin-right: 10px;
     }
+    button {
+        padding: 0;
+        border: 0px;
+        border-radius: 10px;
+        background-color: $green;
+        img {
+            width: 40px;
+        }
+    }
+    button:hover {
+        cursor: pointer;
+    }
 }

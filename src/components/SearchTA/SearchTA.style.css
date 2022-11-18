@@ -12,4 +12,16 @@
   font-size: 30px;
   color: hsl(140deg, 92%, 9%);
   margin-right: 10px;
+}
+.search_container button {
+  padding: 0;
+  border: 0px;
+  border-radius: 10px;
+  background-color: hsl(140deg, 88%, 16%);
+}
+.search_container button img {
+  width: 40px;
+}
+.search_container button:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=SearchTA.style.css.map */
