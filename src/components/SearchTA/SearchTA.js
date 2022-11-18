@@ -5,6 +5,7 @@ import Select from "../form/Select/Select.js";
 import AddTA from "../AddTA/AddTA.js";
 import { Semester } from "../../data/DataSelection.js";
 import "./SearchTA.style.css";
+import Add from "../../img/add-new.png";
 
 function SearchTA({ onSearch, semester, onSemesterChange }) {
   const [searchText, setSearchText] = useState("");
@@ -93,7 +94,7 @@ function SearchTA({ onSearch, semester, onSemesterChange }) {
 
       {/* Modal Visibility */}
       <button type="button" onClick={() => setModalVisible(true)}>
-        Add
+        <img src={Add} alt="add-icon"></img>
       </button>
       <AddTA
         modalVisible={modalVisible}
