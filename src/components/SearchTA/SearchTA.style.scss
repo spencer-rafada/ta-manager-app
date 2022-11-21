@@ -28,3 +28,12 @@ $dark-green: hsl(140, 92%, 9%);
         cursor: pointer;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .search_container {
+        .search_input {
+            width: 100%;
+        }
+    }
+
+}
