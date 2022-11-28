@@ -17,13 +17,13 @@
   padding: 0;
   border: 0px;
   border-radius: 10px;
-  background-color: hsl(140deg, 88%, 16%);
 }
 .search_container button img {
   width: 40px;
 }
 .search_container button:hover {
   cursor: pointer;
+  background-color: hsl(140deg, 88%, 16%);
 }
 
 @media only screen and (max-width: 600px) {
