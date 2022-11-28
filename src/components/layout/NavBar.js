@@ -6,7 +6,7 @@ export default function NavBar() {
   return (
     <nav className="nav">
       <Link to="/">Dashboard</Link>
-      <div>View</div>
+      <Link to="/move">Move</Link>
       <Link to="/admin">Admin</Link>
       <div>About</div>
     </nav>

@@ -24,6 +24,10 @@ function SearchTA({ onSearch, semester, onSemesterChange }) {
     const firstQuery = query(taRef, where("first", "==", searchText));
     const lastQuery = query(taRef, where("last", "==", searchText));
     const inumberQuery = query(taRef, where("i_number", "==", searchText));
+    const courseQuery = query(
+      taRef,
+      where("courses", "array-contains", searchText)
+    );
 
     var querySnapshot = await getDocs(firstQuery);
     querySnapshot.forEach((doc) => {
@@ -40,6 +44,13 @@ function SearchTA({ onSearch, semester, onSemesterChange }) {
       searchResult.push(data);
     });
     querySnapshot = await getDocs(inumberQuery);
+    querySnapshot.forEach((doc) => {
+      const id = {};
+      id["id"] = doc.id;
+      const data = { ...id, ...doc.data() };
+      searchResult.push(data);
+    });
+    querySnapshot = await getDocs(courseQuery);
     querySnapshot.forEach((doc) => {
       const id = {};
       id["id"] = doc.id;
