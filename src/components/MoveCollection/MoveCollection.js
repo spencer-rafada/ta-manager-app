@@ -15,20 +15,23 @@ export default function MoveCollection() {
     const fetchData = async () => {
       const data = await getDocs(storeRefFrom);
       // TODO foreach data append to a list with .data()
-      setAllTA(data);
-      console.log(allTA);
+      const list = [];
+      data.forEach((document) => {
+        const data = document.data();
+        const docId = document.id;
+        list.push({ ...data, docId });
+      });
+      setAllTA(list);
     };
     fetchData();
-  }, []);
+  }, [fromCollection]);
 
   const transferAll = async () => {
     // Firebase can only write up to 400 maximum.
     allTA.forEach(async (document) => {
       try {
-        const data = document.data();
-        const docId = document.id;
-        await setDoc(doc(store, toCollection, docId), data);
-        console.log("Document transferred with ID: ", docId);
+        await setDoc(doc(store, toCollection, document.docId), document);
+        console.log("Document transferred with ID: ", document.docId);
       } catch (error) {
         console.log(document);
         console.log("Error adding document: ", error);
@@ -39,7 +42,6 @@ export default function MoveCollection() {
   const handleFromCollectionChange = (event) => {
     setFromCollection(event.target.value);
     // this should trigger a fetch to display the documents for that semester
-    console.log(`Fetch data ${event.target.value}`);
   };
 
   const handleToCollectionChange = (event) => {
@@ -63,6 +65,18 @@ export default function MoveCollection() {
       <button type="button" onClick={transferAll}>
         Transfer all
       </button>
+      {/* might need to change this as a form */}
+      <div>
+        {allTA.map((data, index) => {
+          return (
+            // check Preston's live filtering to see if this is applicable
+            <div key={index}>
+              <input type="checkbox"></input>
+              {data.docId}: {data.first + " " + data.last}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
